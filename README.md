@@ -13,17 +13,20 @@ Dev/Ops system owner, to stay a bit more on top of all the site that I
 maintain instead of having to cd into all the individual Drupal site
 folders in order to review/modify the settings.php files.
 
-The intention of providing this "sites" folder is for yiou to recreate the
-demo as I showed at BADCAMP2013 with the settings files that I am providing
-for your review and practice.  Here are the setup instructions to recreate
-that experience.
+You can simply use the settings files that are in BC2013SettingsEX and 
+configure and substitute it for your existing settings.php files - I don't
+have to tell most people this but as a reminder, 
 
-    1. To use this properly, you will need to first set up a new Drupal 7 core
-    for yourself and drop this "sites" folder in place of the one provided in the
-    core distribution.
+PLEASE TEST THIS IN A NON-PRODUCTION ENVIRONMENT FIRST 
 
-    2. Next, set up three empty databases.  By default, they are set up in the
-    ex*.settings.php files as follows:
+- and graduate to using the $siteinfo array and include siteinfosettings.php to see how the streamlined system works.  
+
+If you would prefer to recreate the demo as I showed at BADCAMP2013, instead of messing with one of your existing sites, you can substitute the "sites" folder (or just the contents of it) in a new Drupal7 distribution along with the settings files in BC2013SettingsEx for review and practice.  Here are the setup instructions to recreate that experience:
+
+    1. To use this properly, you will first need to set up a new Drupal 7 core for yourself and drop this "sites" folder in place of the one provided in the core distribution.  Set up your host configs accordingly (*AMP, Apache, etc.). This example uses a drupal multisite install so you can set it for up to 3 hosts.  If you want to do single site, reconfigure for the sites/default folder
+accordingly. 
+
+    2. Next, set up three empty databases.  By default, they are set up in the ex*.settings.php files as follows:
         - BADLT_site1  username:admin  password:password  host: localhost
         - BADLT_site2  username:admin  password:password  host: localhost
         - BADLT_site3  username:admin  password:password  host: localhost
@@ -33,7 +36,7 @@ that experience.
         - site1.bc2013.local --> /site1/site1.bc2013.local
         - site2.bc2013.local --> /site2/site2.bc2013.local
         - site3.bc2013.local --> /site3/site3.bc2013.local
-   The dev, stage, and prod folders are just put there for your reference so you can see the model of how I typically set up a vertical. Logically, this same sites folder on dev has site1-dev.yourdomain.com --> /site1/site-dev.yourdomain.com and so forth.  If you are not so familar with how Drupal Multisites are setup, review in information in sites/example.sites.php on how this works.
+   The dev, stage, and prod folders are just put there for your reference so you can see the model of how I typically set up a vertical. Logically, this same sites folder on dev has site1-dev.yourdomain.com --> /site1/site-dev.yourdomain.com and so forth.  If you are not familar with how Drupal Multisites are setup, review in information in sites/example.sites.php on how this works.
 
      4.  Symlink the settings.php file for each corresponding site folder.  In the demo, those settings.php files are named ex1.settings.php, ex2.settings.php, and ex3.settings.php and are located in BC2013SettingsEx so if you were to drop both that fodler and sites into the docroot of your drupal site, you would symlink as follows:
     - sites/site1/site1.bc2013.local/settings.php --> BC2013SettingsEX/ex1.settings.php
