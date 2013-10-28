@@ -1,0 +1,4 @@
+#  Handy dandy .gitignore file
+
+.DS_Store
+*sites
