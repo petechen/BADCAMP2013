@@ -51,9 +51,21 @@ of them according to the site name.
 5. Double check to see that the $databases array in each of your settings files is set 
 correctly for the corresponding database(s) that you set up in step (2). 
 
-6.  Finally, install your site.  I prefer to do it with drush: 
+6. Install your site.  I prefer to do it with drush: 
     - drush si --accouunt-name="admin" --account-pass="password"
+
+7. Lastly, review and enable needed modules for this exercies.  When you get to the 
+backup and migrate settings, you'll want to make sure bam is enabled.  Again, I like
+using drush.  To review: 
+    - drush pm-list  (this will show you all modules avaialbe and their status)
+    To enamble backupandmigrate: 
+    - drush pm-enable backup_migrate
+
+    BONUS, get rid of overlay, Drupal core menu, and enable admin_menu
+    - drush pm-disable overlay, menu
+    - drush pm-enable admin_menu
+
 
 
 (Admittedly, I made a few theme changes, substituting the Stanford Engineering theme that
-I used in the demo for 
+I used in the demo for zem, omega, and adaptive theme since those are publicly available.)
