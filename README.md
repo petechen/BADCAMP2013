@@ -23,34 +23,36 @@ PLEASE TEST THIS IN A NON-PRODUCTION ENVIRONMENT FIRST
 
 If you would prefer to recreate the demo as I showed at BADCAMP2013, instead of messing with one of your existing sites, you can substitute the "sites" folder (or just the contents of it) in a new Drupal7 distribution along with the settings files in BC2013SettingsEx for review and practice.  Here are the setup instructions to recreate that experience:
 
-    1. To use this properly, you will first need to set up a new Drupal 7 core for yourself and drop this "sites" folder in place of the one provided in the core distribution.  Set up your host configs accordingly (*AMP, Apache, etc.). This example uses a drupal multisite install so you can set it for up to 3 hosts.  If you want to do single site, reconfigure for the sites/default folder accordingly. 
+1. To use this properly, you will first need to set up a new Drupal 7 core for yourself and drop this "sites" folder in place of the one provided in the core distribution.  Set up your host configs accordingly (*AMP, Apache, etc.). This example uses a drupal multisite install so you can set it for up to 3 hosts.  If you want to do single site, reconfigure for the sites/default folder accordingly. 
 
-    2. Next, set up three empty databases.  By default, they are set up in the ex*.settings.php files as follows:
-        - BADLT_site1  username:admin  password:password  host: localhost
-        - BADLT_site2  username:admin  password:password  host: localhost
-        - BADLT_site3  username:admin  password:password  host: localhost
+2. Next, set up three empty databases.  By default, they are set up in the ex*.settings.php files as follows:
+    - BADLT_site1  username:admin  password:password  host: localhost
+    - BADLT_site2  username:admin  password:password  host: localhost
+    - BADLT_site3  username:admin  password:password  host: localhost
         
 Change details as you need but make sure to make corresponding changes in your ex*.settings.php files.
    
-    3. Choose a URI for your site(s), and symlink to them from the sites/ folder to the corresponding "vertical" folder (site1, site2, site3). I would suggest using the same name as I already set up so that:
-        - site1.bc2013.local --> /site1/site1.bc2013.local
-        - site2.bc2013.local --> /site2/site2.bc2013.local
-        - site3.bc2013.local --> /site3/site3.bc2013.local
+3. Choose a URI for your site(s), and symlink to them from the sites/ folder to the corresponding "vertical" folder (site1, site2, site3). I would suggest using the same name as I already set up so that:
+    - site1.bc2013.local --> /site1/site1.bc2013.local
+    - site2.bc2013.local --> /site2/site2.bc2013.local
+    - site3.bc2013.local --> /site3/site3.bc2013.local
 
 The dev, stage, and prod folders are just put there for your reference so you can see the model of how I typically set up a vertical. Logically, this same sites folder on dev has site1-dev.yourdomain.com --> /site1/site-dev.yourdomain.com and so forth.  If you are not familar with how Drupal Multisites are setup, review in information in sites/example.sites.php on how this works.
 
-     4.  Symlink the settings.php file for each corresponding site folder.  In the demo, those settings.php files are named ex1.settings.php, ex2.settings.php, and ex3.settings.php and are located in BC2013SettingsEx so if you were to drop both that fodler and sites into the docroot of your drupal site, you would symlink as follows:
+4.  Symlink the settings.php file for each corresponding site folder.  In the demo, those settings.php files are named ex1.settings.php, ex2.settings.php, and ex3.settings.php and are located in BC2013SettingsEx so if you were to drop both that fodler and sites into the docroot of your drupal site, you would symlink as follows:
     - sites/site1/site1.bc2013.local/settings.php --> BC2013SettingsEX/ex1.settings.php
     - sites/site2/site2.bc2013.local/settings.php --> BC2013SettingsEX/ex2.settings.php
     - sites/site3/site3.bc2013.local/settings.php --> BC2013SettingsEX/ex3.settings.php
 
 n.b. The symlink destination name can alwasys be anything you like but always name the symlink settings.php because that is what Drupal is looking for in your sites/* folder.  As a general practice, because I keep all my settings.php files in a repo, I name each  of them according to the site name.
 
-     5. Double check to see that the $databases array in each of your settings files is set correctly for the corresponding database(s) that you set up in step (2).
-     6. Install your site.  I prefer to do it with drush:
+5. Double check to see that the $databases array in each of your settings files is set correctly for the corresponding database(s) that you set up in step (2).
+
+6. Install your site.  I prefer to do it with drush:
        - drush si --accouunt-name="admin" --account-pass="password"
 
-     7. Lastly, review and enable needed modules for this exercies.  When you get to the backup and migrate settings, you'll want to make sure bam is enabled.  Again, I like using drush.  To review:
+
+7. Lastly, review and enable needed modules for this exercies.  When you get to the backup and migrate settings, you'll want to make sure bam is enabled.  Again, I like using drush.  To review:
       - drush pm-list  (this will show you all modules avaialbe and their status)
       To enable backup and migrate:
       - drush pm-enable backup_migrate
