@@ -52,8 +52,18 @@ switch ($siteinfo['enviro']) {
 // directory as a way of keeping files common. n.b. in D7, there are multiple files
 // folders. Make sure to define them all in drush aliases. 
 // $enviro_dir is mostly BAM files specific to $siteinfo['enviro'] and don't get rsynched. 
+
+
+if ($siteinfo['multisite'] == TRUE) {
 $site_dir   = 'sites/'.$siteinfo['dept'].'/'.$site_common;
 $enviro_dir = 'sites/'.$site_url.'/files_'.$siteinfo['enviro'];
+// $site_common = $siteinfo['dept'].'-common';  //  10-18-13 going back to $siteinfo['dept'].'-common' less confusion.   
+}
+elseif ($siteinfo['multisite'] == FALSE) {
+  $site_dir   = 'sites/default';
+  $enviro_dir = 'sites/'.$site_url.'/files_'.$siteinfo['enviro'];
+  //$site_common = 'default';
+}
 
 
 // BADCAMP 2013 - THIS SECTION, based on $siteinfo['id_format'] is really only applies to
